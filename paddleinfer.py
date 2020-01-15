@@ -59,12 +59,12 @@ def getinferdata(image_path):
         print('image',np.array(data[0]['image']),np.array(data[0]['image']).shape)
         return data
     
-path='/home/zengyihui/Documents/PaddleDetection/004696.jpg'
-#path='/home/zengyihui/文档/yolov3L/testdata/ls/004186.jpg'
+path='/home/Documents/PaddleDetection/004696.jpg'
+#path='/home/文档/yolov3L/testdata/ls/004186.jpg'
 data=getinferdata(path)
 print(data)
 '''
-path='/home/zengyihui/Documents/PaddleDetection/000003.jpg'
+path='/home//Documents/PaddleDetection/000003.jpg'
 data=getinferdata(path)
 print(data)
 '''
