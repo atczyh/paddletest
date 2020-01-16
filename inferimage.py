@@ -70,11 +70,17 @@ def NormalizeImage(im,mean = [0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], i
 def Prepocess(img_path):
     test_img = DecodeImage(img_path)
     img_shape = test_img.shape[:2]
-    test_img = NormalizeImage(test_img)
     test_img, im_info = ResizeImage(test_img, target_size=800, max_size=1333)
+    test_img = NormalizeImage(test_img)
     test_img = Permute(test_img)
-    test_img = test_img[np.newaxis,:]  # reshape, [1, C, H, W]
-    return img_shape,test_img, im_info
+    test_img = test_img[np.newaxis, :]  # reshape, [1, C, H, W]
+    print('1',im_info.shape)
+    im_info=im_info[np.newaxis,:]
+    #im_info=im_info.tolist()
+    #im_info=[im_info]
+    #im_info=np.array(im_info)
+    print(im_info)
+    print('2',im_info.shape)
 
 path='/home/Documents/PaddleDetection/004696.jpg'
 shape,test_img, im_info = Prepocess(path)
