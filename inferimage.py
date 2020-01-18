@@ -87,15 +87,14 @@ def Prepocess(img_path,i):
     return im_shape, test_img, im_info,im_id
 
 path='/home/Documents/PaddleDetection/004696.jpg'
-shape,test_img, im_info,im_id = Prepocess(path,1)
+shape,test_img, im_info, im_id= Prepocess(path,0)
 list=[]
 image={'im_shape': 23, 'im_id': 2,'im_info': 3, 'image': 3}
-print(type(test_img.shape),type(im_info),type(test_img))
 image['im_shape']=shape
 image['im_info']=im_info
-image['im_id']=1
+image['im_id']=im_id
 image['image']=test_img
+print(image,test_img.shape)
 list.append(image)
-print(list)
 
 
