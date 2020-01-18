@@ -67,23 +67,27 @@ def NormalizeImage(im,mean = [0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], i
     return im
 
 
-def Prepocess(img_path):
+def Prepocess(img_path,i):
     test_img = DecodeImage(img_path)
     img_shape = test_img.shape[:2]
     test_img, im_info = ResizeImage(test_img, target_size=800, max_size=1333)
     test_img = NormalizeImage(test_img)
     test_img = Permute(test_img)
     test_img = test_img[np.newaxis, :]  # reshape, [1, C, H, W]
-    print('1',im_info.shape)
+    print('1 ',im_info.shape)
     im_info=im_info[np.newaxis,:]
     #im_info=im_info.tolist()
     #im_info=[im_info]
     #im_info=np.array(im_info)
     print(im_info)
-    print('2',im_info.shape)
+    print('2 ',im_info.shape)
+    im_shape = np.array([img_shape + (1.,)]).astype('float32')
+    print('3 ', im_shape)
+    im_id=np.array([[i]]).astype('int32')
+    return im_shape, test_img, im_info,im_id
 
 path='/home/Documents/PaddleDetection/004696.jpg'
-shape,test_img, im_info = Prepocess(path)
+shape,test_img, im_info,im_id = Prepocess(path,1)
 list=[]
 image={'im_shape': 23, 'im_id': 2,'im_info': 3, 'image': 3}
 print(type(test_img.shape),type(im_info),type(test_img))
@@ -94,15 +98,4 @@ image['image']=test_img
 list.append(image)
 print(list)
 
-'''
-path='/home/zengyihui/Documents/1.jpg'
-test_img, im_info = Prepocess(path)
-image={'im_shape': 23, 'im_id': 2,'im_info': 3, 'image': 3}
-image['im_shape']=test_img.shape
-image['im_info']=im_info
-image['im_id']=1
-image['image']=test_img
-list.append(image)
-print(list)
-'''
 
